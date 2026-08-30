@@ -2,7 +2,7 @@
 # fan-out to SQS queues for different platforms. Lambda will process the events from the queues and send to Discord and Slack.
 
 resource "aws_sqs_queue" "discord" {
-  name = "beanflow-discord-queue"
+  name = "${local.name_prefix}-beanflow-discord-queue"
 
   visibility_timeout_seconds = 60
 
@@ -13,7 +13,7 @@ resource "aws_sqs_queue" "discord" {
 }
 
 resource "aws_sqs_queue" "slack" {
-  name = "beanflow-slack-queue"
+  name = "${local.name_prefix}-beanflow-slack-queue"
 
   visibility_timeout_seconds = 60
 

@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 resource "aws_iam_role" "lambda" {
-  name = "beanflow-notification-lambda-role"
+  name = "${local.name_prefix}-beanflow-notification-lambda-role"
 
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 }
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "lambda_sqs" {
 }
 
 resource "aws_iam_role_policy" "lambda_sqs" {
-  name = "beanflow-lambda-sqs-policy"
+  name = "${local.name_prefix}-beanflow-lambda-sqs-policy"
   role = aws_iam_role.lambda.id
 
   policy = data.aws_iam_policy_document.lambda_sqs.json
